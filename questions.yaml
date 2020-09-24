@@ -1,0 +1,8 @@
+- Server1:
+  IP_Address: "192.168.103.111"
+  Location: "York"
+
+- Server2:
+  IP_Address: "192.168.103.112"
+  Location: "Portland"
+
