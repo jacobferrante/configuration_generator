@@ -1,0 +1,4 @@
+Host_name: 
+    question: "What is the Host name of this blade? "
+IP_address:
+    question: "WHat is the IP address of this blade? "
