@@ -1,0 +1,3 @@
+the location of the server is {{ Location.answer }}
+and the IP address is {{ IP_Address.answer }}
+
