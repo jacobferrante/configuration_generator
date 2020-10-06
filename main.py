@@ -31,10 +31,19 @@ output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 with open(yaml_file) as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
 
+
 # assign new values to the dictionary based on user input
-for k, v in data.items():
-    v["answer"] = input(v["question"])
-    data[k] = v
+
+file_creation = input("Are you manually entering data? ")
+
+if file_creation == "yes":
+    for k, v in data.items():
+        v["answer"] = input(v["question"])
+        data[k] = v
+else:
+    for k, v in data.items():
+         data[k] = v
+
 
 ## write the output to a file
 write_template(file_choice + ".txt", data, file_choice)

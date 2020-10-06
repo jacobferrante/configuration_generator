@@ -1,2 +1,2 @@
-hostname: {{ Host_name.answer }} 
-IP_address: {{ IP_adress.answer }}
+IP_address1: {{ ip_address1 }}
+IP_address2: {{ ip_address2 }}
