@@ -1,0 +1,1 @@
+along with {{ horsepower }} at the {{ wheel_size }} wheels. And it will seat {{ seats }} comfortably.
