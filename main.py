@@ -18,7 +18,7 @@ def write_template(dict_name, template_file, template_type):
 
 config_type = input("Are you manually filling out data? ")
 
-if config_type == "yes" "y":
+if config_type == "yes":
     for root, dirs, files in os.walk("configurations"):
         for filename in files:
             print(os.path.splitext(filename)[0])
