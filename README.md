@@ -53,7 +53,7 @@ seats:
 ```
 
 The templates are slightly different from the manual entry ones, you do not need to add ".answer" at the end of your item.
-You can also call to multiple templates easily but just entering multiple templates when asked.
+You can also call to multiple templates easily by just entering multiple templates when asked.
 
 car_spec.txt
 ```bash
