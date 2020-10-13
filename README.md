@@ -7,7 +7,7 @@ The templates and YAML files change depending on if you're entering manually or 
 
 You will be asked if you want to enter data manually or not, either way you'll be asked which YAML data to load and which template(s) you want to export too.
 
-When choosing a YAML file, just enter the name of the file, no need to enter the extension. 
+When choosing a YAML file, just enter the name of the file.
 
 When asked for a template, you can enter in multiple, just use a space in-between templates and no need for the extension.
 
