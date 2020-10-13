@@ -1,6 +1,8 @@
 # Config Maker
-Configuration builder using Python, YAML, and Jinja2.
 
+A configuration file creator using Python, PyYaml, Jinja2 and JSON. Used to quickly create configuration files from templates and user input and or compiled data. 
+
+You will need to install jinja2 and pyyaml manually, JSON is native to Python.
 ```bash
 pip install jinja2
 ```
