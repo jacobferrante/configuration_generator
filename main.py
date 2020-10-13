@@ -17,7 +17,7 @@ def get_dir_list(folder, file_ext):
         for filename in files:
             ret.add(filename)
             if not filename.endswith(file_ext):
-                print(os.path.splitext(filename)[0])
+                print(filename)
     return ret
     
 if __name__ == "__main__":
