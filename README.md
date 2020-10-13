@@ -1,4 +1,14 @@
 # Config Maker
+Configuration builder using Python, YAML, and Jinja2.
+
+```bash
+pip install jinja2
+```
+
+```bash
+pip install pyyaml
+```
+
 
 ## Overview
 
@@ -9,7 +19,7 @@ You will be asked if you want to enter data manually or not, either way you'll b
 
 When choosing a YAML file, just enter the name of the file.
 
-When asked for a template, you can enter in multiple, just use a space in-between templates and no need for the extension.
+When asked for a template, you can enter in multiple, just use a space in-between
 
 ## Manually Entering Data
 
@@ -40,7 +50,7 @@ seats:
         "4"
 ```
 
-The templates are slightly different from the manual entry ones, you do not need to add .answer at the end of your item.
+The templates are slightly different from the manual entry ones, you do not need to add ".answer" at the end of your item.
 You can also call to multiple templates easily but just entering multiple templates when asked.
 
 car_spec.txt

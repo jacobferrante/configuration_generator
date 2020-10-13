@@ -1,10 +1,6 @@
 import yaml
 import os
 import glob
-from jinja2 import FileSystemLoader, Environment
-env = Environment (
-    loader = FileSystemLoader('templates')
-)
 
 ## Get the Jinja template and write to an output file
 def write_template(dict_name, template_file, template_type):
@@ -13,63 +9,61 @@ def write_template(dict_name, template_file, template_type):
     with open (template_file, 'w') as f:
         f.write(output)
     print("Your configuration file is complete!")
-## Print off the file list in a directory
 
-def get_dir_list(folder):
+## list the files in a directory and save them to a list
+def get_dir_list(folder, file_ext):
     ret = set()
     for root, dirs, files in os.walk(folder):
         for filename in files:
             ret.add(filename)
-            print(filename)
+            if not filename.endswith(file_ext):
+                print(os.path.splitext(filename)[0])
     return ret
     
-## Ask the user if they're manually inputting data and print the file list based off choice
+if __name__ == "__main__":
+    ### Ask the User which configuration mode they want to use, manual entry or precompiled data ###
+    config_mode = None
+    while config_mode not in("YES", "NO"):
+        config_mode = input("Are you manually filling out data? (Yes, or No) ").upper()
+    file_choice = None
+    if config_mode == "YES":
+        files = get_dir_list("questions", ".txt")
+        yaml_dir = "questions"
+    elif config_mode == "NO":
+        files = get_dir_list("precompiled", ".txt")
+        yaml_dir = "precompiled"
+    while file_choice not in files:
+        file_choice = input("What data would you like to use? ")
+    yaml_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), yaml_dir, file_choice)
+    ### Load the templates based on Config Mode  ###
+    from jinja2 import FileSystemLoader, Environment
+    env = Environment (
+        loader = FileSystemLoader(yaml_dir + '/templates')
+    )
+    ### Load the YAML file based on user input ###
+    with open(yaml_file) as f:
+        data = yaml.load(f, Loader=yaml.FullLoader)
+    ### Load the correct value reassignment method based on user input ###
+    if config_mode == "YES":
+        for k, v in data.items():
+            v["answer"] = input(v["question"])
+            data[k] = v
+    else:
+        for k, v in data.items():
+            data[k] = v
+    ### Pick and load template(s) based on user input ###
+    get_dir_list(yaml_dir, ".yaml")
+    template_choice = input("what templates would you like to use? ")
+    template_final = template_choice.split()
 
-config_mode = None
-while config_mode not in("yes", "no"):
-    config_mode = input("Are you manually filling out data? (Yes, or No) ")
-file_choice = None
-if config_mode == "yes":
-    files = get_dir_list("questions")
-    d = "questions"
-elif config_mode == "no":
-    files = get_dir_list("precompiled")
-    d = "precompiled"
-while file_choice not in files:
-    file_choice = input("What data would you like to use? ")
-yaml_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), d, file_choice)
-
-
-## open the user picked yaml file and load it
-with open(yaml_file) as f:
-    data = yaml.load(f, Loader=yaml.FullLoader)
-
-## If user chooses manual input, it will ask for input to reassign dictionary values
-if config_mode == "yes":
-    for k, v in data.items():
-        v["answer"] = input(v["question"])
-        data[k] = v
-## Otherwise it will use the reference file and reassign the values
-else:
-    for k, v in data.items():
-         data[k] = v
-
-## write the output to a file
-
-## Error checking templates but only allows for one template choice
-# 
-# template_choice = None
-# while template_choice not in templates:
-#     template_choice = input("what templates would you like to use? ")
-
-# template_final = template_choice.split()
-
-template_choice = input("what templates would you like to use? ")
-template_final = template_choice.split()
+    ### Write the data to the templates ###
+    for x in template_final:
+        outputs = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs", x)
+        write_template(data, outputs, x)
 
 
-for x in template_final:
-    write_template(data, x, x)
+        ## TO DO ##
+        # Need to add Error checking on the template user input while keeping the ability to use multiple templates at once
 
 
 
