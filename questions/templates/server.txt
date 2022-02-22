@@ -1,0 +1,2 @@
+ip_address1: {{ ip_address1 }}
+ip_address2: {{ ip_address2 }}

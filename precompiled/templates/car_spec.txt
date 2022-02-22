@@ -1,2 +1,0 @@
-This car has a {{ cylinder_count }} engine
-and {{ wheel_size }} wheels, 
