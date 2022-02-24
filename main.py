@@ -1,4 +1,16 @@
 import yaml
+import os
+
+def get_dir_list(file_ext):
+    ret = set()
+    for root, dirs, files in os.walk('questions'):
+        for filename in files:
+            ret.add(filename)
+            if filename.endswith(file_ext):
+                print(filename)
+    return ret
+
+get_dir_list(".yaml")
 
 ## Load YAML file into data dict
 with open("questions/server.yaml") as f:
@@ -20,7 +32,7 @@ if prereqs["output_folder"] == None:
 else:
     print("outputting file to " + prereqs["output_folder"])
 
-## 
+## assign values to dict item using user input 
 for k, v in questions.items():
     questions[k] = input(v)
 
