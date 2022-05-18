@@ -15,7 +15,7 @@ pip install pyyaml
 
 The YAML file contains the questions that needed to be asked to fill in the Jinja2 Template. You will be asked which YAML file to use.
 
-I have added a prereqs section which allows you to predefine settings based on each .yaml file, so far I've added the ability to manual enter a file name, or use one that matches the template name. A option to set the file extension for the compelted file, and the output folder location, which leave blank if want to specify during file creation.
+I have added a prereqs section which allows you to predefine settings based on each .yaml file, so far I've added the ability to manual enter a file name, or use one that matches the template name. A option to set the file extension for the completed file, and the output folder location, which leave blank if want to specify during file creation.
 
 Here is an example of the prereqs which would use the template name as the filename, use the file extension .ini and output to the folder "outputs"
 
