@@ -1,10 +1,10 @@
 prereqs: 
         file_extension: ".ini"
         ask_filename: False
-        output_folder: outputs # leave blank if prefer to choose during file creation
+        output_folder:  # leave blank if prefer to choose during file creation
 
 questions:
         ip_address1: "What is the first IP? "
-        ip_address2: "What is the second IP? "
-        ip_address3: "What is the third IP? "
-        ip_address4: "What is the fourth IP? "
+        # ip_address2: "What is the second IP? "
+        # ip_address3: "What is the third IP? "
+        # ip_address4: "What is the fourth IP? "
