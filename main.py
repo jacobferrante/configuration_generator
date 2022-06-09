@@ -1,41 +1,39 @@
 import yaml
 import os
-import glob
 
+config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"config.yaml")
+template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates")
+question_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "questions")
+output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 
-
-## Write dictionary to template/file
-def write_template(dict_name, template_file, template_type):
-    template = env.get_template(template_type)
-    output = template.render(**dict_name)
-    with open (template_file, 'w') as f:
-        f.write(output)
-    print("Your configuration file is complete!")
+## load templates using jinja2
+from jinja2 import FileSystemLoader, Environment
+env = Environment (
+    loader = FileSystemLoader(template_dir)
+)
 
 ## Function to generate a printed list of files in a directory
-def get_dir_list(file_ext):
+def get_dir_list(dir_var, file_ext):
     ret = set()
-    for root, dirs, files in os.walk('questions'):
+    for root, dirs, files in os.walk(dir_var):
         for filename in files:
             ret.add(filename)
-            if filename.endswith(file_ext):
-                print(filename)
     return ret
 
 if __name__ == "__main__":
-    from jinja2 import FileSystemLoader, Environment
-    env = Environment (
-        loader = FileSystemLoader('questions/templates')
-    )
-    ## Print out file list in template directory, only ending in .yaml and ask user which file, ask again if file does not exist
-    file_choice = None
-    files = get_dir_list(".yaml")
-    yaml_dir = "questions"
-    
+
     ## Print out list of templates, and have user choose a template and assign it to a variable to use
-    while file_choice not in files:
-        file_choice = input("What data would you like to use? ")
-        yaml_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), yaml_dir, file_choice)
+    question_choice = None
+    while question_choice not in get_dir_list(question_dir, ".yaml"):
+        print(os.listdir(question_dir))
+        question_choice = input("What data would you like to use? ")
+        yaml_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), question_dir, question_choice)
+
+    # Ask which template to use 
+    user_template = None
+    while user_template not in get_dir_list(template_dir, ".txt"):
+        print(os.listdir(template_dir))
+        user_template = input("what template(s) would you like to use? ")
 
     ## Load YAML file into data dict
     with open(yaml_file) as f:
@@ -45,36 +43,13 @@ if __name__ == "__main__":
     prereqs = data["prereqs"]
     questions = data ["questions"]
 
-    ## Output filename based on user input or YAML file.
-    if prereqs["ask_filename"] == False:
-        print("using default filename")
-    else:
-        output_filename = input("What Filename would you like to use? ")
-
-    ## Output folder based on user input or YAML file.s
-    if prereqs["output_folder"] == None:
-        output_folder = input("Where would you like to output this? ")
-    else:
-        print("outputting file to " + prereqs["output_folder"])
-        output_folder = prereqs["output_folder"]
-
     ## assign values to dict item using user input 
     for k, v in questions.items():
         questions[k] = input(v)
 
-    ## Check if output directory exists and create it if it doesn't
-    if os.path.isdir(output_folder) == False:
-        os.mkdir("outputs/" + output_folder)
-    else:
-        print("folder exists")
-
-    
-    # Ask which template to use 
-    template_choice = input("what templates would you like to use? ")
-    template_final = template_choice.split()
-    
-
-    ## 
-    for x in template_final:
-        outputs = os.path.join(os.path.dirname(os.path.abspath(__file__)), output_folder, x)
-        write_template(questions, outputs, x)
+    ## write file using user input and template/yaml
+    template = env.get_template(user_template)
+    output = template.render(**questions)
+    with open ("outputs/file", 'w') as f:
+        f.write(output)
+    print("Your configuration file is complete!")
