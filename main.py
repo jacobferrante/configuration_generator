@@ -25,7 +25,7 @@ def print_dict_formatted(directory, file_ext):
     for x in os.listdir(directory):
         print(x.replace(file_ext, ""))
 
-if __name__ == "__main__":
+while __name__ == "__main__":
 
     ## Print out list of templates, and have user choose a template and assign it to a variable to use
     question_choice = None
