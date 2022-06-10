@@ -1,8 +1,11 @@
-ip_address1: 
-        question: "What is the first IP? "
-ip_address2:
-        question: "What is the second IP? "
-ip_address3:
-        question: "What is the third IP? "
-ip_address4:
-        question: "What is the fourth IP? "
+prereqs: 
+        filename: "server123"
+        file_extension: ".txt"
+        ask_filename: False
+        output_location: test # leave blank if prefer to choose during file creation
+
+questions:
+        ip_address1: "What is the first IP? "
+        # ip_address2: "What is the second IP? "
+        # ip_address3: "What is the third IP? "
+        # ip_address4: "What is the fourth IP? "

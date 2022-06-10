@@ -1,2 +1,0 @@
-ip_address3: {{ ip_address3.answer }}
-ip_address4: {{ ip_address4.answer }}
