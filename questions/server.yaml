@@ -1,7 +1,8 @@
 prereqs: 
-        file_extension: ".ini"
+        filename: "server123"
+        file_extension: ".txt"
         ask_filename: False
-        output_folder:  # leave blank if prefer to choose during file creation
+        output_location: test # leave blank if prefer to choose during file creation
 
 questions:
         ip_address1: "What is the first IP? "
