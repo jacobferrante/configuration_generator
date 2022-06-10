@@ -76,6 +76,17 @@ while __name__ == "__main__":
     
     ## create a variable that holds the final output path
     output_final = output_location + "/" + output_filename
+
+    ## check if file already exists and ask if user if they want to overwrite it or change the name
+    if os.path.isfile(output_final) is True:
+        overwrite_check = input(output_final + " already exists, would you like to overwrite it? ")
+        if overwrite_check == "yes" or "y":
+            print("overwriting " + output_final)
+        elif overwrite_check == "no" or "n":
+            output_filename = input("What would you like to name the file? ")
+            output_final = output_location + "/" + output_filename
+    else:
+        continue
     
     ## write file using user input and template/yaml.
     template = env.get_template(user_template)
