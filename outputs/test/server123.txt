@@ -1,4 +1,0 @@
-ip_address1: 1
-ip_address2: 1
-ip_address3: 1
-ip_address4: 1

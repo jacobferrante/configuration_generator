@@ -1,6 +1,6 @@
 prereqs: 
-        filename: "server123" # Set predetitermined filename 
-        file_extension: ".txt" # Set predetitermined extension 
+        filename: "server123" # Set predetermined filename 
+        file_extension: ".txt" # Set predetermined extension, leave blank if you want none 
         ask_filename: False # If you'd like the script to ask you for a custom filename, make this True
         output_location: test # leave blank if prefer to choose during file creation
 
