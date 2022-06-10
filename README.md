@@ -21,14 +21,16 @@ Here is an example of the prereqs which would use the template name as the filen
 
 ```yaml
 prereqs: 
-        file_extension: ".ini"
-        ask_filename: False
-        output_folder: outputs # leave blank if prefer to choose during file creation
+        filename: "server123" # Set predetitermined filename 
+        file_extension: ".txt" # Set predetitermined extension 
+        ask_filename: False # If you'd like the script to ask you for a custom filename, make this True
+        output_location: test # leave blank if prefer to choose during file creation
 ```
 These values would ask for an IP address and then assign them to the value. IP 
 
 ```yaml
 questions:
+        # variable to reference in template : "question to ask in script"
         ip_address1: "What is the first IP? "
         ip_address2: "What is the second IP? "
         ip_address3: "What is the third IP? "
