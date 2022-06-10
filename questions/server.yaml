@@ -1,11 +1,12 @@
 prereqs: 
-        filename: "server123"
-        file_extension: ".txt"
-        ask_filename: False
+        filename: "server123" # Set predetitermined filename 
+        file_extension: ".txt" # Set predetitermined extension 
+        ask_filename: False # If you'd like the script to ask you for a custom filename, make this True
         output_location: test # leave blank if prefer to choose during file creation
 
 questions:
+        # variable to reference in template : "question to ask in script"
         ip_address1: "What is the first IP? "
-        # ip_address2: "What is the second IP? "
-        # ip_address3: "What is the third IP? "
-        # ip_address4: "What is the fourth IP? "
+        ip_address2: "What is the second IP? "
+        ip_address3: "What is the third IP? "
+        ip_address4: "What is the fourth IP? "

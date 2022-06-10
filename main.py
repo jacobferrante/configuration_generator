@@ -21,23 +21,23 @@ def get_dir_list(dir_var, file_ext):
             ret.add(filename)
     return ret
 
-def print_dict_formatted(directory, ):
-    print(os.listdir(directory))
+def print_dict_formatted(directory, file_ext):
+    for x in os.listdir(directory):
+        print(x.replace(file_ext, ""))
 
 if __name__ == "__main__":
 
     ## Print out list of templates, and have user choose a template and assign it to a variable to use
     question_choice = None
     while question_choice not in get_dir_list(question_dir, ".yaml"):
-        print(os.listdir(question_dir))
+        print_dict_formatted(question_dir, ".yaml")
         question_choice = input("What data would you like to use? ") + '.yaml'
         yaml_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), question_dir, question_choice)
         
-
     # Ask which template to use 
     user_template = None
     while user_template not in get_dir_list(template_dir, ".txt"):
-        print(os.listdir(template_dir))
+        print_dict_formatted(template_dir, ".txt")
         user_template = input("what template(s) would you like to use? ")
         user_template = user_template + ".txt"
     ## Load YAML file into data dict
@@ -74,9 +74,10 @@ if __name__ == "__main__":
     else:
         print("exporting to " + output_location)        
     
+    ## create a variable that holds the final output path
     output_final = output_location + "/" + output_filename
     
-    ## write file using user input and template/yaml
+    ## write file using user input and template/yaml.
     template = env.get_template(user_template)
     output = template.render(**questions)
     with open (output_final, 'w') as f:
