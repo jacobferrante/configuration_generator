@@ -1,6 +1,6 @@
-# Configuration Generator
+# 
 
-A configuration file creator using Python, PyYaml, and Jinja2. Used to quickly create configuration files from templates and user input.
+A tool for creating configuration file using Python, PyYaml, and Jinja2. Used to quickly create configuration files from templates and user input.
 
 You will need to install jinja2 and pyyaml manually. 
 ```bash
